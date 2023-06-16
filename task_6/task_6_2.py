@@ -6,7 +6,7 @@
 # Если ферзи не бьют друг друга верните истину, а если бьют - ложь.
 
 
-def queen(*position: list) -> str:
+def queen(*position: list) -> bool:
     num = 8
     # # Ферзь бьет по вертикали или горизонтали, диагонали, любое количество клеток. Если в координатах расстановки повтор - бьет
     x = []
@@ -16,8 +16,6 @@ def queen(*position: list) -> str:
         new_x, new_y = position[i]
         x.append(new_x)
         y.append(new_y)
-    print(x)
-    print(y)
     for i in range(num):
         for j in range(i+1, num):
             if x[i] == x[j] or y[i] == y[j] or abs(x[i] - x[j]) == abs(y[i] - y[j]):
