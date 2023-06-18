@@ -26,10 +26,7 @@ def check_year(year: str) -> bool:
 
 
 def final_check_year(date: str) -> str:
-    """
 
-    :rtype: object
-    """
     if check_year(date):
         return 'Високосный' if _check_year2(date) else "не является високосным"
     else:
