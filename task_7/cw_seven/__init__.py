@@ -1,0 +1,1 @@
+__all__ = ['new_text', 'new_name', 'task_three', 'new_bin_files', 'rename']
