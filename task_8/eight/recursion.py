@@ -17,13 +17,13 @@ def recurs(path: str):
             res = {'Path': str(i), "File?": Path.is_file(i), 'Dir?': Path.is_dir(i), 'size': os.path.getsize(i)}
             my_list.append(res)
             recurs(i)
-    with open('../data.json', 'a') as f:
+    with open('./data.json', 'a') as f:
         json.dump(my_list, f, indent=2, separators=(',', ':'))
-    with open('../data.сsv', 'a', newline='', encoding='utf-8') as f_write:
+    with open('./data.сsv', 'a', newline='', encoding='utf-8') as f_write:
         writer = csv.DictWriter(f_write, fieldnames=my_list[0], dialect='excel-tab')
         writer.writeheader()
         writer.writerows(my_list)
-    with open('../data.pickle', 'wb') as f_w:
+    with open('./data.pickle', 'wb') as f_w:
         pickle.dump(my_list, f_w)
 
 
