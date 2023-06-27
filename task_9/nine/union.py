@@ -25,17 +25,6 @@ def deco(func: Callable):
     return wrapper
 
 
-def count(cnt: int):
-    def new_list(func: Callable):
-        def wrapper(*args, **kwargs):
-            result = None
-            for i in range(cnt):
-                    result = func(*args, **kwargs)
-            return result
-        return wrapper
-    return new_list
-
-
 def create_json(func: Callable):
     final_dict = {}
 
@@ -53,9 +42,22 @@ def create_json(func: Callable):
         return func(*args, **kwargs)
     return wrapper
 
+def count(cnt: int):
+    def new_list(func: Callable):
+        def wrapper(*args, **kwargs):
+            result = None
+            for i in range(cnt):
+                    result = func(*args, **kwargs)
+                    print(result)
+            return result
+        return wrapper
+    return new_list
+
+
 
 @deco
 @create_json
+@cache
 @count(2)
 def closure(my_count: int, n: int) -> Callable[[], None]:
     def rnd_num():

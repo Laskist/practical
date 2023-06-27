@@ -8,10 +8,11 @@ import json
 import csv
 import random
 from functools import cache
+from functools import wraps
 
 
 def quadratic(func: Callable) -> tuple:
-
+    @wraps(func)
     def wrapper(*args, **kwargs):
         rnd_num = func(*args, **kwargs)
         csv_list = []
