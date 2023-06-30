@@ -3,9 +3,6 @@
 # экземпляра.
 from random import randint
 
-import numpy as np
-from numpy import matrix
-
 
 class Matrix:
 
