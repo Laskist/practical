@@ -27,6 +27,9 @@ class Rectangle:
         else:
             d = other.perimeter() - self.perimeter()
         return Rectangle(c, d)
+    def __str__(self):
+        return f'Прямоугольник со сторонами {self.l}, {self.w}. Периметр треугольника {self.perimeter()}. ' \
+               f'Площадь треугольника {self.area()}'
 
 
 if __name__ == '__main__':
@@ -36,5 +39,6 @@ if __name__ == '__main__':
     print(f'{rect_2.perimeter() = }, {rect_2.area() = }')
     rect = rect_1 + rect_2
     print(f'{rect.perimeter() = }, {rect.area() = }')
+    print(rect)
     help(Rectangle)
 
