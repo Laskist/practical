@@ -1,0 +1,78 @@
+# Доработайте класс прямоугольник из прошлых семинаров.
+# Добавьте возможность изменять длину и ширину
+# прямоугольника и встройте контроль недопустимых значений
+# (отрицательных).
+# Используйте декораторы свойств.
+
+# Дорабатываем класс прямоугольник из прошлого семинара.
+# Добавьте возможность сложения и вычитания.
+# При этом должен создаваться новый экземпляр
+# прямоугольника.
+# # Складываем и вычитаем периметры, а не длинну и ширину.
+# # При вычитании не допускайте отрицательных значений.
+# Доработаем прямоугольник и добавим экономию памяти
+# для хранения свойств экземпляра без словаря __dict__.
+
+class Rectangle:
+    __slots__ = ('_l', '_w')
+
+    def __init__(self, l, w = None):
+        self._l = l
+        self._w = w
+        if w is None:
+            self.w = l
+
+    @property
+    def l(self):
+        return self._l
+
+    @property
+    def w(self):
+        return self._w
+
+    @l.setter
+    def l(self, value):
+        if value > 0:
+            self._l = value
+        else: raise ValueError(f'Длина должна быть положительной')
+
+    @w.setter
+    def w(self, value):
+        if value > 0:
+            self._w = value
+        else: raise ValueError(f'Ширина не может быть отрицательной')
+
+    def perimeter(self):
+        return 2 * (self.l + self.w)
+
+    def area(self):
+        return self.l * self.w
+
+    def __add__(self, other):
+        """Взяла одну сторону как сумму периметров, вторую как разницу"""
+        c = self.perimeter() + other.perimeter()
+        if self.perimeter() - other.perimeter() > 0:
+            d = self.perimeter() - other.perimeter()
+        else:
+            d = other.perimeter() - self.perimeter()
+        return Rectangle(c, d)
+
+    def __str__(self):
+        return f'Прямоугольник со сторонами {self.l}, {self.w}. Периметр треугольника {self.perimeter()}. ' \
+               f'Площадь треугольника {self.area()}'
+
+
+if __name__ == '__main__':
+    rect_1 = Rectangle(3, 3)
+    print(rect_1.l)
+    print(rect_1.w)
+    rect_1.l = 20
+    rect_1.w = 4
+    print(rect_1)
+    # print(f'{rect_1.perimeter() = }, {rect_1.area() = }')
+    # rect_2 = Rectangle(4, 4)
+    # print(f'{rect_2.perimeter() = }, {rect_2.area() = }')
+    # rect = rect_1 + rect_2
+    # print(f'{rect.perimeter() = }, {rect.area() = }')
+    # print(rect)
+
